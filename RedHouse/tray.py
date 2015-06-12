@@ -29,14 +29,12 @@ class TaskBarIcon(wx.TaskBarIcon):
         self.SetIcon(icon, TRAY_TOOLTIP)
 
     def on_left_down(self, event):
-        a,b,c,d,e = self.fileDaemon.GetStatistics()
+        a,b,c,d,e,f, g = self.fileDaemon.GetStatistics()
         #balloonText = 'Total files: {}\nAdded local files: {}\nDelete local files: {}\nAdded remote files: {}\nDeleted remote files: {}'.format(self.fileDaemon.GetStatistics())
-        balloonText = 'Total files: {}\nAdded local files: {}\nDelete local files: {}\nAdded remote files: {}\nDeleted remote files: {}'.format(a,b,c,d,e)
-        self.ShowBalloon('RedHouse usage', balloonText)
+        balloonText = 'Total files: {}\nAdded local files: {}\nDelete local files: {}\nLocal updates {}\nAdded remote files: {}\nDeleted remote files: {}\nRemote updates {}'.format(a,b,c,d,e, f, g)
+        self.ShowBalloon('RedHouse Usage', balloonText)
         print 'Tray icon was left-clicked.'
 
-    def on_hello(self, event):
-        print 'Hello, world!'
 
     def on_exit(self, event):
         self.fileDaemon.stop()
